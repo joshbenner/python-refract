@@ -131,6 +131,4 @@ def test_object_refracted(obj, obj_refracted):
 
 def test_object_from_refracted(obj_refracted):
     obj = ObjectElement.from_refract(obj_refracted, Namespace())
-    # if obj.refracted != obj_refracted:
-    #     pass
     assert obj.refracted == obj_refracted

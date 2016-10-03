@@ -1,7 +1,7 @@
 import abc
 import copy
 import types
-from collections import MutableSequence, MutableMapping
+from collections import MutableSequence, MutableMapping, OrderedDict
 
 import six
 
@@ -338,7 +338,8 @@ class ObjectElement(Element, MutableMapping):
     @classmethod
     def from_refract(cls, doc, namespace):
         parse = namespace.from_refract
-        content = {parse(m['content']['key']): parse(m['content']['value'])
-                   for m in doc['content']}
+        # Content populates to a list, so keeping order is less surprising.
+        content = OrderedDict(
+            (parse(m['content']['key']), parse(m['content']['value']))
+            for m in doc['content'])
         return cls(content, doc['meta'], doc['attributes'], namespace)
-
