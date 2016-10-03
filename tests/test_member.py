@@ -11,3 +11,8 @@ def test_member_native_value():
 def test_member_bad_set_content():
     with pytest.raises(ValueError):
         MemberElement(('foo',))
+
+
+def test_member_direct_from_refract():
+    with pytest.raises(NotImplementedError):
+        MemberElement.from_refract({}, Namespace())
