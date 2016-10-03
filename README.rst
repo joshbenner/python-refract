@@ -1,6 +1,12 @@
 Python-Refract
 ==============
 
+.. image:: https://travis-ci.org/joshbenner/python-refract.svg?branch=master
+    :target: https://travis-ci.org/joshbenner/python-refract
+
+.. image:: https://coveralls.io/repos/github/joshbenner/python-refract/badge.svg?branch=master
+    :target: https://coveralls.io/github/joshbenner/python-refract?branch=master
+
 A Python 2/3 library for interacting with
 `Refract elements <https://github.com/refractproject/refract-spec>`_.
 

@@ -16,9 +16,6 @@ setup(
         'six'
     ],
     extras_require={
-        'dev': [
-            'typing'
-        ],
         'test': [
             'pytest',
             'pytest-cov'
