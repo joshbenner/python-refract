@@ -98,12 +98,13 @@ def test_array_elements(array):
 
 
 def test_array_map(array, array_native):
-    assert map(lambda e: e.native_value, array) == array_native
+    assert list(map(lambda e: e.native_value, array)) == array_native
 
 
 def test_array_filter(array, array_native):
     filtered = filter(lambda e: e.native_value, array)
-    assert map(lambda e: e.native_value, filtered) == filter(None, array_native)
+    native_value = list(map(lambda e: e.native_value, filtered))
+    assert native_value == list(filter(None, array_native))
 
 
 def test_array_reduce():
