@@ -1,6 +1,5 @@
 import abc
 import copy
-import types
 from collections import MutableSequence, MutableMapping, OrderedDict
 
 import six
@@ -169,7 +168,7 @@ class Element(six.with_metaclass(abc.ABCMeta, object)):
 
 class NullElement(Element):
     element = 'null'
-    native_types = (types.NoneType,)
+    native_types = (type(None),)
 
 
 class BooleanElement(Element):
