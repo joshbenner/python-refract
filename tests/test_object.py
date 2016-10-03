@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 import pytest
 import six
 
@@ -6,10 +8,8 @@ from refract import ObjectElement, Namespace
 
 @pytest.fixture
 def obj_native():
-    return {
-        'foo': 'bar',
-        'z': 1
-    }
+    # Order is important since we store as array and do order-sensitive compare.
+    return OrderedDict((('foo', 'bar'), ('z', 1)))
 
 
 @pytest.fixture
