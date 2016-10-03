@@ -5,7 +5,8 @@ python:
   - "pypy"
   - "pypy3"
 install:
-  - pip install . pytest pytest-cov coveralls
+  - pip install -e .
+  - pip install pytest pytest-cov coveralls
 script:
   - py.test tests --cov=refract
 after_success:
