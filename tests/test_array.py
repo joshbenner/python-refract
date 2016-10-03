@@ -116,3 +116,9 @@ def test_array_insert(array, array_native):
     array.insert(0, 'foo')
     array_native.insert(0, 'foo')
     assert array.native_value == array_native
+
+
+def test_array_delete(array, array_native):
+    del array[0]
+    del array_native[0]
+    assert array.native_value == array_native

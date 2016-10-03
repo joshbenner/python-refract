@@ -193,28 +193,33 @@ class StringElement(Element):
         return len(self.content)
 
 
-class ArrayElement(Element, MutableSequence, list):
+class ArrayElement(Element, MutableSequence):
     element = 'array'
     native_types = (tuple, list, set)
     default_value = []
 
     def __setitem__(self, index, value):
-        list.__setitem__(self, index, self.namespace.element(value))
+        self._content[index] = self.namespace.element(value)
 
-    __getitem__ = list.__getitem__
-    __delitem__ = list.__delitem__
-    __len__ = list.__len__
+    def __getitem__(self, index):
+        return self._content[index]
+
+    def __delitem__(self, index):
+        del self._content[index]
+
+    def __len__(self):
+        return len(self._content)
 
     def insert(self, index, value):
-        list.insert(self, index, self.namespace.element(value))
+        self._content.insert(index, self.namespace.element(value))
 
     @property
     def content(self):
-        return self[0:]  # Full slice as efficient copy
+        return self._content[0:]  # Full slice as efficient copy
 
     def set_content(self, value):
         self._require_native_type(value)
-        self[:] = [self.namespace.element(v) for v in value]
+        self._content = [self.namespace.element(v) for v in value]
 
     @property
     def native_value(self):
