@@ -1,5 +1,6 @@
 from collections import namedtuple
 
+
 import six
 
 from .elements import *
@@ -20,7 +21,7 @@ class Namespace(object):
         self.element_classes = {}
         self.element_detection = []
         if not no_defaults:
-            map(self.register_element_class, (
+            default_classes = (
                 BooleanElement,
                 NullElement,
                 NumberElement,
@@ -28,7 +29,9 @@ class Namespace(object):
                 ArrayElement,
                 MemberElement,
                 ObjectElement
-            ))
+            )
+            for element_class in default_classes:
+                self.register_element_class(element_class)
             self.add_detection(lambda v: v is None, NullElement)
             self.add_detection(lambda v: isinstance(v, bool), BooleanElement)
             self.add_detection(lambda v: isinstance(v, (int, float)),

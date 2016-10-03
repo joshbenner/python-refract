@@ -113,7 +113,7 @@ def test_object_del_missing(obj):
 
 
 def test_object_keys(obj):
-    assert obj.keys() == ['foo', 'z']
+    assert list(obj.keys()) == ['foo', 'z']
 
 
 def test_object_iter_keys(obj):
