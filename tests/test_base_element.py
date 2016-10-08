@@ -1,3 +1,5 @@
+import pytest
+
 from refract import Element, Namespace
 from refract.elements import ElementMap
 
@@ -80,4 +82,17 @@ def test_element_clone():
     el.meta['id'] = 'test2'
     assert not el.meta['id'].equals(el2.meta['id'].native_value)
 
+
+@pytest.mark.parametrize('prop,value', [
+    ('id', 'bar'),
+    ('classes', ['foo', 'bar']),
+    ('name', 'baz'),
+    ('title', 'foo-bar'),
+    ('description', 'Foo, bar, and baz'),
+    ('links', [1, 2])
+])
+def test_name_property(prop, value):
+    el = Element('foo', namespace=Namespace())
+    setattr(el, prop, value)
+    assert getattr(el, prop) == value
 

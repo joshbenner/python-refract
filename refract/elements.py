@@ -165,6 +165,58 @@ class Element(six.with_metaclass(abc.ABCMeta, object)):
             self.namespace
         )
 
+    def _meta_value(self, key, default=None):
+        element = self.meta.get(key)
+        return element.native_value if element is not None else default
+
+    @property
+    def id(self):
+        return self._meta_value('id', None)
+
+    @id.setter
+    def id(self, value):
+        self.meta['id'] = value
+
+    @property
+    def classes(self):
+        return self._meta_value('classes', [])
+
+    @classes.setter
+    def classes(self, value):
+        self.meta['classes'] = value
+
+    @property
+    def name(self):
+        return self._meta_value('name', None)
+
+    @name.setter
+    def name(self, value):
+        self.meta['name'] = value
+
+    @property
+    def title(self):
+        return self._meta_value('title', None)
+
+    @title.setter
+    def title(self, value):
+        self.meta['title'] = value
+
+    @property
+    def description(self):
+        return self._meta_value('description', None)
+
+    @description.setter
+    def description(self, value):
+        self.meta['description'] = value
+
+    @property
+    def links(self):
+        return self._meta_value('links', [])
+
+    @links.setter
+    def links(self, value):
+        self.meta['links'] = value
+
 
 class NullElement(Element):
     element = 'null'
