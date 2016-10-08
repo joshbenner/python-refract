@@ -10,6 +10,8 @@ Python-Refract
 A Python 2/3 library for interacting with
 `Refract elements <https://github.com/refractproject/refract-spec>`_.
 
+Inspired by `Minim <https://github.com/refractproject/minim>`_.
+
 Install from Git
 ----------------
 

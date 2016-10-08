@@ -5,7 +5,8 @@ from collections import MutableSequence, MutableMapping, OrderedDict
 import six
 
 __all__ = ['Element', 'NullElement', 'BooleanElement', 'NumberElement',
-           'StringElement', 'ArrayElement', 'ObjectElement', 'MemberElement']
+           'StringElement', 'ArrayElement', 'ObjectElement', 'MemberElement',
+           'LinkElement']
 
 
 class ElementMap(MutableMapping, dict):
@@ -399,3 +400,29 @@ class ObjectElement(Element, MutableMapping):
             (parse(m['content']['key']), parse(m['content']['value']))
             for m in doc['content'])
         return cls(content, doc['meta'], doc['attributes'], namespace)
+
+
+class LinkElement(Element):
+    element = 'link'
+    default_value = []
+    scalar = False
+
+    @property
+    def relation(self):
+        el = self.attributes.get('relation')
+        return el.native_value if el else None
+
+    @relation.setter
+    def relation(self, value):
+        self.attributes['relation'] = value
+
+    rel = relation
+
+    @property
+    def href(self):
+        el = self.attributes.get('href')
+        return el.native_value if el else None
+
+    @href.setter
+    def href(self, value):
+        self.attributes['href'] = value
